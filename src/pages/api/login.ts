@@ -1,5 +1,8 @@
-import { PASSWORD, USERNAME } from "@/constants/user.constants";
+import { PASSWORD,USERNAME } from "@/constants/user.constants";
+import { setCorsHeaders } from "@/utils/apiResponse.util";
 import { NextApiRequest, NextApiResponse } from "next";
+ 
+import { createJWT } from "@/utils/auth";
 
 type LoginResponse = {
   success: boolean;
@@ -8,10 +11,13 @@ type LoginResponse = {
   };
   error?: string;
 };
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<LoginResponse>
 ) {
+ 
+ setCorsHeaders(req, res);
+
   if (req.method !== "POST") {
     return res
       .status(405)
@@ -27,10 +33,12 @@ export default function handler(
     });
   }
 
-  const token = "TOKEN_HERE";
-
-  res.setHeader("Set-Cookie", `token=${token}; Path=/; HttpOnly`);
-
+          
+  const token =  await createJWT(username, password)
+     
+  res.setHeader("Set-Cookie", `token=${token}; Path=/; domain=mayhem.local; Max-Age=2h`);
+ 
+ 
   return res.status(200).json({
     success: true,
     data: {

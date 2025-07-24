@@ -10,5 +10,5 @@ export default async function handler(
     res.status(200).json(successResponse(userData));
   } else {
     res.status(404).json(errorResponse("Route not found"));
-  }
+  } 
 }

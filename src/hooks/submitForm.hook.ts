@@ -1,19 +1,19 @@
 export const useSubmitForm = () => {
-  const submitForm = async (data: unknown) => {
+  const submitForm = async (data: unknown, method: string, endpoint:string) => {
+  
     try {
-      const response = await fetch("/api/contactable", {
-        method: "POST",
+      const response = await fetch(endpoint, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-      console.log("Form submission result:", result);
+      const result = await response.json(); 
       return result;
     } catch (err) {
-      console.error("Form submission error:", err);
+    
       throw err;
     }
   };

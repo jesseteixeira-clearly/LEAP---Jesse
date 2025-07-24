@@ -1,6 +1,6 @@
 export const cmsData = [
   {
-    id: "hero-section",
+    id: "hero-banner",
     type: "hero",
     attributes: {
       background: {
@@ -26,6 +26,10 @@ export const cmsData = [
             color: "#f0f0f0",
           },
         },
+        cta: {
+          text: "Get Started",
+           
+        },
       },
     },
   },
@@ -41,6 +45,9 @@ export const cmsData = [
       items: [
         {
           id: "feature-1",
+          style:{
+            wrapperClass: "bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+          },
           content: {
             title: "Fast Performance",
             description: "Lightning quick loading times",
@@ -50,6 +57,9 @@ export const cmsData = [
         },
         {
           id: "feature-2",
+          style: {
+            wrapperClass: "bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+          },
           content: {
             title: "Secure Platform",
             description: "Enterprise-grade security",
@@ -59,6 +69,9 @@ export const cmsData = [
         },
         {
           id: "feature-3",
+          style: {
+            wrapperClass: "bg-purple-100 text-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+          },
           content: {
             title: "Scalable Solution",
             description: "Grows with your business needs",
@@ -101,13 +114,59 @@ export const cmsData = [
             placeholder: "your@email.com",
           },
         },
+        {
+          type: "textArea",
+          name: "message",
+          label: "Message",
+          validation: {
+            required: true,
+            minLength: 2,
+            maxLength: 50,
+          },
+          styling: {
+            rows: '4',
+            className: "form-input",
+            placeholder: "How can we help you?",
+          },
+        },
       ],
       submission: {
-        endpoint: "/api/contact",
+        endpoint: "/api/contactable",
         method: "POST",
         successMessage: "Thank you for contacting us!",
         errorMessage: "Something went wrong. Please try again.",
+        cta: {
+         label: {
+          action: "Send Message",
+          loading: "Sending...",
+         }
+        }
       },
     },
   },
+  {
+    id: "footer",
+    attributes: {
+      text: {
+        copyright: "© {date} Mayhem. All rights reserved.",
+      }, 
+      content: {
+        links: [
+        {
+          platform: "Facebook",
+          url: "#",
+        },
+        {
+          platform: "Twitter",
+          url: "#",
+        },
+        {
+          platform: "LinkedIn",
+          url: "#",
+        },
+      ],
+      }
+    }
+
+  }
 ];

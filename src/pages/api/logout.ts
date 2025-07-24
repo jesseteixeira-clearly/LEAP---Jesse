@@ -1,6 +1,9 @@
+import { setCorsHeaders } from "@/utils/apiResponse.util";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+
+  setCorsHeaders(req, res);
   if (req.method !== "POST") {
     return res
       .status(405)
